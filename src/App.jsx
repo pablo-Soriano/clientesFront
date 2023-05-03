@@ -5,6 +5,7 @@ import TablaCliente from "./components/Clientes/TablaCliente";
 import { CrudProvider } from "./context/CrudProvider";
 import TablaDocumento from "./components/Documentos/TablaDocumento";
 import { CrudProviderDocumento } from "./context/CrudProviderDocumento";
+import TablaDirecciones from "./components/Direcciones/TablaDirecciones";
 
 
 function App() {
@@ -16,6 +17,8 @@ function App() {
         <Routes>
           <Route path="/" element={<TablaCliente />} />
           <Route path="/documentos/:idCliente" element={<TablaDocumento />} />
+          <Route path="/direcciones/:idCliente" element={<TablaDirecciones />} />
+
         </Routes>
       </BrowserRouter>
     </CrudProvider>

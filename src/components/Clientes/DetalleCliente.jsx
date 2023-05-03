@@ -3,7 +3,7 @@ import useCrud from '../../hooks/useCrud';
 import { Link } from 'react-router-dom';
 
 const DetalleCliente = ({cliente}) => {
-    const {handleClickModel, buscarClienteId, buscarDocumentosClienteId, handleClickEliminarUsuarioMSG,mostrarDocumento } = useCrud();
+    const {handleClickModel, buscarClienteId, buscarDocumentosClienteId, handleClickEliminarUsuarioMSG,mostrarDocumento, mostrarDirecciones } = useCrud();
     const {id, Nombres, Apellidos, Telefono, Email} = cliente
 
   return (
@@ -15,15 +15,19 @@ const DetalleCliente = ({cliente}) => {
       <td>{Email}</td>
       <td>Activo</td>
       <td>
-        <button
+        <Link
           type="button"
           className="btn btn-outline-success mr-2"
           title="Direcciones"
+          onClick={() => {
+            mostrarDirecciones(id)
+            buscarClienteId(id)
+          }}
           style={{marginRight: 10}}
-
+          to={`/direcciones/${id}`}
         >
           <i className="fa-solid fa-address-book"></i>
-        </button>
+        </Link>
 
         <Link
           type="button"
@@ -31,6 +35,7 @@ const DetalleCliente = ({cliente}) => {
           title="Documentos"
           onClick={()=>{
             mostrarDocumento(id)
+            buscarClienteId(id)
           }}
           style={{marginRight: 10}}
           to={`/documentos/${id}`}

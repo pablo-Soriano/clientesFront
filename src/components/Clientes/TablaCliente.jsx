@@ -6,6 +6,7 @@ import FormularioCliente from "./FormularioCliente";
 import useCrud from "../../hooks/useCrud";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 const customStyles = {
   content: {
@@ -36,6 +37,8 @@ const TablaCliente = () => {
           Agregar Cliente
         </button>
       </div>
+
+
 
       <table className="table">
         <thead>

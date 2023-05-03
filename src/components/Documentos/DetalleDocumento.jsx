@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 
 
 const DetalleDocumento = ({documento}) => {
-    const {handleClickModel, buscarClienteId, buscarDocumentosClienteId, handleClickEliminarUsuarioMSG } = useCrud();
+    const {handleClickModel, buscarClienteId,  handleClickEliminarDocumentoMSG, buscarDocumentoId } = useCrud();
     const {id, Nombredocumento, numero, } = documento
+    //console.log(id);
+
 
   return (
     <tr>
@@ -19,7 +21,7 @@ const DetalleDocumento = ({documento}) => {
           className="btn btn-outline-warning mr-1"
           title="editar"
           onClick={()=>{
-            //buscarClienteId(id)
+            buscarDocumentoId(id)
             handleClickModel()
           }}
           style={{marginRight: 10}}
@@ -31,10 +33,10 @@ const DetalleDocumento = ({documento}) => {
           type="button"
           className="btn btn-outline-danger"
           title="eliminar"
-  /*         onClick={() => {
-            handleClickEliminarUsuarioMSG(id)
+          onClick={() => {
+            handleClickEliminarDocumentoMSG(id)
            
-          }} */
+          }} 
           
         >
           <i className="fa-solid fa-trash"></i>

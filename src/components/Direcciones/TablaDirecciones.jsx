@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import DetalleDocumento from "./DetalleDocumento";
-import Modal from "react-modal";
+import React from "react";
 import ReactModal from "react-modal";
-import FormularioDocumento from "./FormularioDocumento";
+import DetalleDirecciones from "./DetalleDirecciones";
+import { Link } from "react-router-dom";
 import useCrud from "../../hooks/useCrud";
+import Modal from 'react-modal';
+import FormularioDireccion from "./FormularioDireccion";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { Link, useParams } from "react-router-dom";
 
 const customStyles = {
   content: {
@@ -23,30 +22,22 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-const TablaDocumento = () => {
-  const { modal, handleClickModel, documentos, agregarCliente } = useCrud();
+const TablaDirecciones = () => {
+  const { modal, handleClickModel, direcciones, agregarCliente } = useCrud();
   const { Nombres, Apellidos } = agregarCliente;
-
-/*   console.log(Nombres);
-  console.log(Apellidos); */
-
-  //const idCliente = useParams();
-  //mostrarDocumento(idCliente)
-  //console.log(idCliente);
 
   return (
     <div className="row">
 
-      <h1 className="text-center">Documuento de { Nombres } { Apellidos }</h1>
-
+      <h1 className="text-center">Documento de {Nombres} {Apellidos} </h1>
       <div>
         <div className="d-inline-block">
           <button
             type="button"
             className="btn btn-outline-success btn-lg m-3"
-            onClick={handleClickModel}
+             onClick={handleClickModel} 
           >
-            Agregar Documentos
+            Agregar Direccion
           </button>
         </div>
 
@@ -60,7 +51,7 @@ const TablaDocumento = () => {
           </Link>
         </div>
       </div>
-      
+
       <table className="table">
         <thead>
           <tr className="table-secondary">
@@ -68,10 +59,13 @@ const TablaDocumento = () => {
               Id
             </th>
             <th scope="col" style={{ width: 250 }}>
-              Documento
+              Municipio
             </th>
             <th scope="col" style={{ width: 300 }}>
-              Numero
+              Departamento
+            </th>
+            <th scope="col" style={{ width: 300 }}>
+              Direccion
             </th>
             <th scope="col" style={{ width: 300 }}>
               Estado
@@ -82,30 +76,30 @@ const TablaDocumento = () => {
           </tr>
         </thead>
         <tbody>
-         
-         { documentos.length === 0 ? (
-          <td colspan="5" className="text-center fs-1">No hay dirección aun</td>
-         ) : (
-          documentos.map((documento) => (
-            <DetalleDocumento documento={documento} key={documento.id} />
-          ))
-         ) }
 
-         {/*  {documentos.map((documento) => (
-            <DetalleDocumento documento={documento} key={documento.id} />
-          ))} */}
-
+          {direcciones.length === 0 ? (
+            <td colspan="6" className="text-center fs-1">No hay dirección aun</td>
+          ) : (
+            direcciones.map((direccion) => (
+              <DetalleDirecciones direccion={direccion} key={direccion.id} />
+            ))
+          )}
+          
+{/*              {direcciones.map((direccion) => (
+          <DetalleDirecciones direccion={direccion} key={direccion.id} />
+        ))}  */}
         </tbody>
       </table>
+
       <ReactModal
         isOpen={modal} //estado que por defecto viene false
-        /*   onAfterOpen={afterOpenModal}*/
+        //onAfterOpen={afterOpenModal}
         onRequestClose={handleClickModel} //cualquier lado salga
         style={customStyles}
         contentLabel="Example Modal"
         overlayClassName="modal-fondo OVERLAY_STYLE" //modal fondo negro
       >
-        <FormularioDocumento />
+         <FormularioDireccion /> 
       </ReactModal>
       
       <ToastContainer
@@ -120,8 +114,9 @@ const TablaDocumento = () => {
         pauseOnHover
         theme="light"
       />
+
     </div>
   );
 };
 
-export default TablaDocumento;
+export default TablaDirecciones;

@@ -5,26 +5,29 @@ import { useParams } from 'react-router-dom';
 
 
 const FormularioDocumento = () => {
-  const {idCliente} = useParams();
+ 
 
     const {handleClickModel, capturarDatosDocumentos,  guardarDatosFormularioDoc, actualizarDocumento, agregarDocumento } = useCrud();
     const { Nombredocumento, numero, id} = agregarDocumento;
 
+  
+
+
     
     const handleSubmitGuardar = e => {
       e.preventDefault();
-      guardarDatosFormularioDoc(agregarDocumento, idCliente);
+      //guardarDatosFormularioDoc(agregarDocumento);
       // si tiene id de documento, es un actualizar, sino es un documento nuevo (guardar)
-     /*  if(id) {
+      if(id) {
         actualizarDocumento(agregarDocumento, id);
       } else {
-        guardarDatosFormulario(agregarDocumento);
-      } */
+        guardarDatosFormularioDoc(agregarDocumento);
+      }
     }
 
   return (
     <div style={{ width: 800 }}>
-    <h1 className="text-center">{/* { id ? "Editar" : "Guardar" } */} Documento</h1>
+    <h1 className="text-center">{ id ? "Editar" : "Guardar" } Documento</h1>
 
     <form
       onSubmit={handleSubmitGuardar}
@@ -37,7 +40,7 @@ const FormularioDocumento = () => {
           name="Nombredocumento"
           placeholder="Nombre de documento"
           
-            onChange={capturarDatosDocumentos}
+          onChange={capturarDatosDocumentos}
             
           value={Nombredocumento} 
         />
@@ -59,7 +62,7 @@ const FormularioDocumento = () => {
       <div className="row text-center  mr-5 d-inline-block">
         <input
           type="submit"
-        //  value={ id ? "Editar" : "Guardar" }
+          value={ id ? "Editar" : "Guardar" }
           className="btn btn-lg btn-outline-primary"
         />
       </div>
